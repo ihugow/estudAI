@@ -1,0 +1,18 @@
+.footerFull {
+    background-color: #000011;
+    width: 100%;
+}
+
+.footer .logoAndSocial img {
+    width: 50px;
+}
+.footer .logoAndSocial span {
+    color: white;
+    
+}
+
+i {
+    font-size: 1.2rem;
+    color: white;
+}
+

@@ -1,0 +1,2 @@
+npm i bootstrap-icons
+npm install tailwindcss @tailwindcss/vite

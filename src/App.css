@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+}
+
+:root {
+  /* Colors */
+  --color-header: rgba(1, 5, 21, 0.759);
+  --color-dark-blue: #2e55e9;
+  --color-light-blue: #00d8ff;
+  --color-main-text: #fff;
+  --color-second-text: #9ea0a7;
+  --color-card: rgba(37, 40, 61, 0.654);
+  --color-bg-box: rgba(15, 16, 19, 0.446);
+  --color-page-frame: rgb(15, 16, 19, 0.446);
+
+  /* Typography */
+  --inter-font: "Inter",sans-serif; 
+  --t1-font-size: 2rem;
+  --t2-font-size: 1.6rem;
+  --t3-font-size: 1.5rem;
+  --desc-font-size: 1rem;
+  --desc-line-height: 1.3rem;
+  --t1-font-weight: 800;
+  --t2-font-weight: 700;
+  --t3-font-weight: 600;
+  --desc-font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: var(--inter-font);
+}
+
+@keyframes floating {
+  0% {
+      transform: translateY(0);
+  }
+
+  50% {
+      transform: translateY(-20px);
+  }
+
+  100% {
+      transform: translateY(0);
+  }
+}
+
+.glbLogoTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+}
+
+.glbSpanGrad {
+  background-image: linear-gradient(to right bottom, #00E9EA, #2e55e9);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glbParagraph {
+  font-family: var(--inter-font);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.3rem;
+  color: var(--color-second-text);
+}

@@ -1,0 +1,128 @@
+.sideMenu {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  right: -250px;
+  bottom: 0;
+  height: 100%;
+  width: 250px;
+  transition: 0.5s;
+  background-color: rgba(1, 5, 21, 0.929);
+  backdrop-filter: blur(10px);
+}
+
+.sideMenuOpen {
+  right: 0;
+}
+
+.exit {
+  cursor: pointer;
+}
+
+.exit i {
+  margin: 18px 0 0 18px;
+  color: #fff;
+  font-size: 24px;
+}
+
+.menuList {
+  margin: 14px 0 0 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  font-weight: var(--desc-font-weight);
+}
+
+.li {
+  transition: 0.5s;
+  user-select: none;
+}
+
+.li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 16px;
+  text-decoration: none;
+  color: #fff;
+  width: 100%;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+}
+
+.icon i {
+  color: #fff;
+}
+
+.expandLi {
+  user-select: none;
+}
+
+.expandLi label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 16px;
+  text-decoration: none;
+  color: #fff;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.expandLi label .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+}
+
+.expandIcon {
+  font-size: 16px;
+  margin-left: auto;
+  transition: transform 0.3s;
+}
+
+.expandIconRotate {
+  transform: rotate(180deg);
+}
+
+.expandLi input {
+  display: none;
+}
+
+.subList {
+  list-style: none;
+  padding: 0;
+  display: none;
+}
+
+.subList li {
+  transition: 0.5s;
+}
+
+.subList li a {
+  display: block;
+  text-decoration: none;
+  font-size: 14px;
+  color: var(--color-main-text);
+  width: 100%;
+  padding: 6px 60px;
+}
+
+.subList li:hover {
+  background-color: var(--color-dark-blue);
+}
+
+.li:hover {
+  background-color: var(--color-dark-blue);
+}
+
+input[type="checkbox"]:checked + .subList {
+  display: block;
+}
