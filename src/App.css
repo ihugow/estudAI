@@ -39,20 +39,6 @@
   font-family: var(--inter-font);
 }
 
-@keyframes floating {
-  0% {
-      transform: translateY(0);
-  }
-
-  50% {
-      transform: translateY(-20px);
-  }
-
-  100% {
-      transform: translateY(0);
-  }
-}
-
 .glbLogoTitle {
   font-size: 2rem;
   font-weight: 800;

@@ -1,16 +1,16 @@
 import React from "react";
 
-import styles from "./HomePage.module.css";
-import "../../App.css";
-import studentImage from "../../assets/images/global/mindStudent.png";
-import mindGallery from "../../assets/images/pages/home/mindGallery.png";
+import styles from "./Home.module.css";
+import "../../../App.css";
+import studentImage from "../../../assets/images/global/mindStudent.png";
+import mindGallery from "../../../assets/images/pages/home/mindGallery.png";
 
-import mathIcon from "../../assets/images/global/Icons/materias/math.png";
-import portugueseIcon from "../../assets/images/global/Icons/materias/portuguese.png";
-import biologyIcon from "../../assets/images/global/Icons/materias/biology.png";
-import geographyIcon from "../../assets/images/global/Icons/materias/geography.png";
-import historyIcon from "../../assets/images/global/Icons/materias/history.png";
-import chemicalIcon from "../../assets/images/global/Icons/materias/chemical.png";
+import mathIcon from "../../../assets/images/global/Icons/materias/math.png";
+import portugueseIcon from "../../../assets/images/global/Icons/materias/portuguese.png";
+import biologyIcon from "../../../assets/images/global/Icons/materias/biology.png";
+import geographyIcon from "../../../assets/images/global/Icons/materias/geography.png";
+import historyIcon from "../../../assets/images/global/Icons/materias/history.png";
+import chemicalIcon from "../../../assets/images/global/Icons/materias/chemical.png";
 
 const materias = [
   { nome: "Matemática", slug: "matematica", icon: mathIcon },
@@ -46,7 +46,7 @@ const HomePage = () => {
             </p>
           </div>
           <div className={styles.prologoImg}>
-            <img
+            <img className='floating'
               src={studentImage}
               alt="Imagem de uma estudante apontando para o título da página."
             />
