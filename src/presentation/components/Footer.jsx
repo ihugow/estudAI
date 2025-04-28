@@ -1,19 +1,14 @@
 import React from "react";
-import style from "./Footer.module.css";
-import logo from "../../assets/images/global/logo.png";
+import { EstudAI } from "./EstudAI";
 
 const Footer = () => {
   return (
-    <div className={`${style.footerFull}`}>
-      <div className={`${style.footer} container py-10 mx-auto px-4 grid lg:grid-cols-2 gap-8`}>
-        <div className={`${style.logoAndSocial} flex flex-col gap-4 `}>
-          <div className="flex gap-3">
-            <img src={logo} alt="" />
-            <span className="glbLogoTitle">
-              Estud<span className="glbSpanGrad">AI</span>
-            </span>
-          </div>
-          <div className={`${style.social} flex flex-row gap-3`}>
+    <div className="bg-[#000011]">
+      <div className="h-8 bg-gradient-to-b from-transparent to-[#000011]"></div>
+      <div className="container py-10 mx-auto px-4 grid lg:grid-cols-2 gap-8">
+        <div className="flex flex-col gap-4 ">
+          <EstudAI/>
+          <div className="flex flex-row gap-3">
             <i class="bi bi-instagram"></i>
             <i class="bi bi-whatsapp"></i>
             <i class="bi bi-facebook"></i>
@@ -21,13 +16,13 @@ const Footer = () => {
             <i class="bi bi-telegram"></i>
           </div>
         </div>
-        <div className={`${style.info} flex flex-wrap gap-5 md:justify-between`}>
-          <div className={`${style.descobrir}`}>
+        <div className="flex flex-wrap gap-5 md:justify-between">
+          <div>
             <p className="text-white font-semibold text-base">Descobrir</p>
             <p className="glbParagraph">Sobre a EstudAI</p>
           </div>
 
-          <div className={`${style.license}`}>
+          <div>
             <p className="text-white font-semibold text-base">
               Licença & Termos de Uso
             </p>
@@ -35,7 +30,7 @@ const Footer = () => {
             <p className="glbParagraph">Termos de Uso</p>
           </div>
 
-          <div className={`${style.ajuda}`}>
+          <div>
             <p className="text-white font-semibold text-base">Ajuda</p>
             <p className="glbParagraph">Central de Ajuda</p>
             <p className="glbParagraph">Fale Conosco</p>

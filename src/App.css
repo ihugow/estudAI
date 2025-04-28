@@ -1,13 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
 
 @theme {
+  --color-primary-blue: #00d8ff;
+  --color-secondary-blue: #2e55e9;
+  --color-bg-login-primary: #06080d;
+  --color-bg-login-secondary: #0d121c;
+
   --breakpoint-*: initial;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
   --breakpoint-xxl: 1400px;
+}
+
+@layer utilities {
+  .main-gradient {
+    background-image: linear-gradient(to right bottom, #00e9ea, #2e55e9);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 :root {
@@ -22,7 +36,7 @@
   --color-page-frame: rgb(15, 16, 19, 0.446);
 
   /* Typography */
-  --inter-font: "Inter",sans-serif; 
+  --inter-font: "Inter", sans-serif;
   --t1-font-size: 2rem;
   --t2-font-size: 1.6rem;
   --t3-font-size: 1.5rem;
@@ -35,7 +49,6 @@
 }
 
 * {
-  box-sizing: border-box;
   font-family: var(--inter-font);
 }
 
@@ -46,7 +59,7 @@
 }
 
 .glbSpanGrad {
-  background-image: linear-gradient(to right bottom, #00E9EA, #2e55e9);
+  background-image: linear-gradient(to right bottom, #00e9ea, #2e55e9);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

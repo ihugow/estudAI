@@ -1,6 +1,6 @@
 .header {
     position: fixed;
-    z-index: 998;
+    z-index: 49;
     top: 0;
     width: 100%;
     background-color: var(--color-header);
@@ -204,6 +204,7 @@
     height: 25px;
     border-radius: 50%;
     transition: 1s;
+    cursor: pointer;
 }
 
 .menuIcon i {

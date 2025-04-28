@@ -1,23 +1,30 @@
 //Styles
-import './App.css'
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import "./App.css";
+// import "bootstrap-icons/font/bootstrap-icons.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router";
 
-//Components
-import Header from './presentation/components/Header'
-import SideMenu from './presentation/components/SideMenu'
-import HomePage from './presentation/pages/home/Home'
-import Footer from './presentation/components/Footer'
+import LayoutPrincipal from './presentation/layouts/LayoutPrincipal'
+import LayoutSimples from './presentation/layouts/LayoutSimples'
+
+//Pages
+import HomePage from "./presentation/pages/home/Home";
+import LoginPage from "./presentation/pages/login/Login";
 
 function App() {
 
   return (
-    <>
-      <Header/>
-      <SideMenu/>
-      <HomePage/>
-      <Footer/>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route element={<LayoutPrincipal/>}>
+        <Route path="/" element={<HomePage />} />
+        </Route>
+
+        <Route element={<LayoutSimples />}>
+          <Route path="/login" element={<LoginPage />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

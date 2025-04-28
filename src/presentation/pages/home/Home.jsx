@@ -1,5 +1,4 @@
 import React from "react";
-
 import styles from "./Home.module.css";
 import "../../../App.css";
 import studentImage from "../../../assets/images/global/mindStudent.png";
@@ -23,7 +22,7 @@ const materias = [
 
 const HomePage = () => {
   return (
-    <div className={`${styles.body}`}>
+    <div className="py-28 bg-[url('./assets/images/global/background.png')] bg-cover bg-fixed">
       <div className={`${styles.homeContainer} container mx-auto px-4`}>
         <section className={styles.prologo}>
           <div className={styles.prologoTxt}>
@@ -138,7 +137,6 @@ const HomePage = () => {
           </div>
         </section>
       </div>
-      <div className="h-8 bg-gradient-to-b from-transparent to-[#000011]"></div>
     </div>
   );
 };

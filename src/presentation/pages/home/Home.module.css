@@ -1,11 +1,3 @@
-.body {
-  background-image: url(../../../assets/images/global/background.png);
-  background-size: cover;
-  background-attachment: fixed;
-  position: static;
-  padding: 120px 0 0 0;
-}
-
 /* ----- PROLOGO STYLE ----- */
 .prologo {
   display: flex;
@@ -135,7 +127,6 @@
 }
 
 .recentes {
-  margin: auto auto 120px auto;
   padding: 15px 10px;
   border-radius: 8px;
   background-color: var(--color-bg-box);
