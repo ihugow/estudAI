@@ -1,2 +1,11 @@
 npm i bootstrap-icons
+
 npm install tailwindcss @tailwindcss/vite
+
+npm i react-router-dom
+
+npm install --save-dev @svgr/rollup (Plugin para usar svgs como componentes no react)
+{
+    import svgr from '@svgr/rollup';
+    svgr(),
+}
