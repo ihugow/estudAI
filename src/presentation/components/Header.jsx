@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import styles from './Header.module.css'
-import {EstudAI, EstudAINav} from './EstudAI';
+import { EstudAINav } from './EstudAI';
 
 const Header = ({ onMenuClick }) => {
 
