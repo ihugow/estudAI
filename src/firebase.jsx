@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBdaSjxaa1r6HAeVgbCgqhrRg7IwVAq0-k",
@@ -17,7 +18,9 @@ const appCheck = initializeAppCheck(firebaseApp, {
   isTokenAutoRefreshEnabled: true,
 });
 
-export { firebaseApp, appCheck };
+const auth = getAuth(firebaseApp);
+
+export { firebaseApp, appCheck, auth };
 
 
 

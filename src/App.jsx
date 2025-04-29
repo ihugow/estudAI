@@ -7,6 +7,7 @@ import LayoutSimples from './presentation/layouts/LayoutSimples'
 
 import HomePage from "./presentation/pages/home/Home";
 import LoginPage from "./presentation/pages/login/Login";
+import ProfilePage from "./presentation/pages/profile";
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route element={<LayoutPrincipal/>}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         </Route>
 
         <Route element={<LayoutSimples />}>
