@@ -1,12 +1,10 @@
 //Styles
 import "./App.css";
-// import "bootstrap-icons/font/bootstrap-icons.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 
 import LayoutPrincipal from './presentation/layouts/LayoutPrincipal'
 import LayoutSimples from './presentation/layouts/LayoutSimples'
 
-//Pages
 import HomePage from "./presentation/pages/home/Home";
 import LoginPage from "./presentation/pages/login/Login";
 

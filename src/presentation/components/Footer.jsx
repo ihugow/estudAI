@@ -9,11 +9,11 @@ const Footer = () => {
         <div className="flex flex-col gap-4 ">
           <EstudAI/>
           <div className="flex flex-row gap-3">
-            <i class="bi bi-instagram"></i>
-            <i class="bi bi-whatsapp"></i>
-            <i class="bi bi-facebook"></i>
-            <i class="bi bi-twitter-x"></i>
-            <i class="bi bi-telegram"></i>
+            <i className="bi bi-instagram"></i>
+            <i className="bi bi-whatsapp"></i>
+            <i className="bi bi-facebook"></i>
+            <i className="bi bi-twitter-x"></i>
+            <i className="bi bi-telegram"></i>
           </div>
         </div>
         <div className="flex flex-wrap gap-5 md:justify-between">
