@@ -1,10 +1,27 @@
 import React, { useState } from "react";
+import { auth } from "../../../firebase";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 import { EstudAI } from "../../components/EstudAI";
 import { ReactComponent as GoogleIcon } from "../../../assets/images/global/icons/socials/google.svg";
 import { ReactComponent as MicrosoftIcon } from "../../../assets/images/global/icons/socials/microsoft.svg";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const loginGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      console.log("Usuário logado:", result.user);
+      navigate("/profile")
+    } catch (error) {
+      console.error("Erro ao logar:", error)
+    }
+  };
+
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -35,15 +52,11 @@ const Login = () => {
           <h1 className="mt-9 text-white text-base text-center">
             Entre ou cadastre-se com
           </h1>
-          <div id="Google" className="mt-4 flex flex-col">
-            <a
-              className="flex gap-2 py-2.5 px-4 text-white bg-[#10151f] border-1 border-[#292d41] rounded-md hover:border-secondary-blue duration-300"
-              href=""
-            >
-              <GoogleIcon className="w-6 h-6" />
-              <span>Google</span>
-            </a>
-          </div>
+          <button onClick={loginGoogle} className="flex gap-2 mt-4 w-full py-2.5 px-4 text-white cursor-pointer bg-[#10151f] border-1 border-[#292d41] rounded-md hover:border-secondary-blue duration-300">
+            <GoogleIcon className="w-6 h-6" />
+            Google
+          </button>
+
           <div id="MS" className="mt-2.5 flex flex-col">
             <a
               className="flex gap-2 py-2.5 px-4 text-white items-center bg-[#10151f] border-1 border-[#292d41] rounded-md hover:border-secondary-blue duration-300"
