@@ -7,7 +7,7 @@ import LayoutSimples from './presentation/layouts/LayoutSimples'
 
 import HomePage from "./presentation/pages/home/Home";
 import LoginPage from "./presentation/pages/login/Login";
-import ProfilePage from "./presentation/pages/profile";
+import ProfilePage from "./presentation/pages/Profile";
 
 function App() {
 
