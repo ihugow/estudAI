@@ -1,29 +1,25 @@
-//Styles
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { Routes, Route } from "react-router-dom";
 
-import LayoutPrincipal from './presentation/layouts/LayoutPrincipal'
-import LayoutSimples from './presentation/layouts/LayoutSimples'
+import LayoutPrincipal from "./presentation/layouts/LayoutPrincipal";
+import LayoutSimples from "./presentation/layouts/LayoutSimples";
 
 import HomePage from "./presentation/pages/home/Home";
 import LoginPage from "./presentation/pages/login/Login";
 import ProfilePage from "./presentation/pages/Profile";
 
 function App() {
-
   return (
-    <Router>
       <Routes>
-        <Route element={<LayoutPrincipal/>}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route element={<LayoutPrincipal />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Route>
 
         <Route element={<LayoutSimples />}>
           <Route path="/login" element={<LoginPage />} />
         </Route>
       </Routes>
-    </Router>
   );
 }
 
