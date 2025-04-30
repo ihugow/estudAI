@@ -10,7 +10,7 @@ import React, { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase.jsx";
 
-import EstudAILogo from "./assets/images/global/logo.png"
+import EstudAILogo from "./assets/images/global/logo.png";
 
 function AuthLoader() {
   const [loading, setLoading] = useState(true);
@@ -49,3 +49,5 @@ createRoot(document.getElementById("root")).render(
     </BrowserRouter>
   </StrictMode>
 );
+
+export default AuthLoader;
