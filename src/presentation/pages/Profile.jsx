@@ -1,24 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { auth } from "../../firebase";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Profile = () => {
-  const [user, setUser] = useState(null);
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const currentUser = auth.currentUser;
-
-    if (currentUser) {
-      setUser(currentUser);
-    } else {
-      // Se não estiver logado, manda pra login
-      navigate("/login");
-    }
-  }, [navigate]);
+  if (user === undefined) {
+    return <p>Carregando perfil...</p>;
+  }
 
   if (!user) {
-    return <p>Carregando perfil...</p>;
+    navigate("/login");
+    return null;
   }
 
   return (
@@ -31,6 +25,13 @@ const Profile = () => {
         />
         <h2 className="text-center text-2xl font-semibold">{user.displayName || "Nome não informado"}</h2>
         <p className="text-center text-gray-600">{user.email}</p>
+
+        <button
+          onClick={() => logout()}
+          className="mt-4 bg-red-500 text-white py-2 px-4 rounded cursor-pointer hover:bg-red-600 transition-colors"
+        >
+          Sair
+        </button>
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { auth } from "../../../firebase";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../../firebase";
+import { useAuth } from "../../../contexts/AuthContext";
 
 import { EstudAI } from "../../components/EstudAI";
 import { ReactComponent as GoogleIcon } from "../../../assets/images/global/icons/socials/google.svg";
@@ -9,27 +10,34 @@ import { ReactComponent as MicrosoftIcon } from "../../../assets/images/global/i
 
 const Login = () => {
   const navigate = useNavigate();
+  const { user } = useAuth(); // pega o usuário do contexto
+
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+
+  // Se já estiver logado, redireciona automaticamente
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   const loginGoogle = async () => {
     const provider = new GoogleAuthProvider();
 
     try {
-      const result = await signInWithPopup(auth, provider);
-      console.log("Usuário logado:", result.user);
-      navigate("/profile")
+      await signInWithPopup(auth, provider);
+      // O redirecionamento será feito automaticamente via useEffect acima
     } catch (error) {
-      console.error("Erro ao logar:", error)
+      console.error("Erro ao logar com Google:", error);
     }
   };
 
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Email:", email);
     console.log("Senha:", senha);
-    // Aqui você pode adicionar a lógica de envio, como uma chamada de API
+    // Aqui você pode implementar login com email/senha se quiser (usando signInWithEmailAndPassword)
   };
 
   return (
@@ -52,24 +60,29 @@ const Login = () => {
           <h1 className="mt-9 text-white text-base text-center">
             Entre ou cadastre-se com
           </h1>
-          <button onClick={loginGoogle} className="flex gap-2 mt-4 w-full py-2.5 px-4 text-white cursor-pointer bg-[#10151f] border-1 border-[#292d41] rounded-md hover:border-secondary-blue duration-300">
+
+          <button
+            onClick={loginGoogle}
+            className="flex gap-2 mt-4 w-full py-2.5 px-4 text-white cursor-pointer bg-[#10151f] border-1 border-[#292d41] rounded-md hover:border-secondary-blue duration-300"
+          >
             <GoogleIcon className="w-6 h-6" />
             Google
           </button>
 
-          <div id="MS" className="mt-2.5 flex flex-col">
+          <div className="mt-2.5 flex flex-col">
             <a
               className="flex gap-2 py-2.5 px-4 text-white items-center bg-[#10151f] border-1 border-[#292d41] rounded-md hover:border-secondary-blue duration-300"
-              href=""
+              href="#"
             >
               <MicrosoftIcon className="w-6 h-6" />
               <span>Microsoft</span>
             </a>
           </div>
-          <div id="Email" className="mt-2.5 flex flex-col">
+
+          <div className="mt-2.5 flex flex-col">
             <a
               className="flex gap-2 py-2.5 px-4 text-white items-center bg-[#10151f] border-1 border-[#292d41] rounded-md hover:border-secondary-blue duration-300"
-              href=""
+              href="#"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +97,8 @@ const Login = () => {
               <span>Continue com Email</span>
             </a>
           </div>
-          <div id="Ou" className="mt-7 flex items-center">
+
+          <div className="mt-7 flex items-center">
             <div className="bg-[#282c42] w-full h-[1px]"></div>
             <div className="p-1.5 border border-[#282c42] rounded-full">
               <p className="text-white text-sm">OU</p>
@@ -131,9 +145,6 @@ const Login = () => {
             </button>
           </form>
         </section>
-        {/* <div id="Image Block" className="border border-amber-50">
-          <img src={StudentImg} className=" bg-cover" alt="" />
-        </div> */}
       </div>
     </div>
   );
