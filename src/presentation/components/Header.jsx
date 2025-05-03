@@ -3,8 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Header.module.css'
 import { EstudAINav } from './EstudAI';
 import { useAuth } from '../../contexts/AuthContext';
+import { getAuth, signOut } from 'firebase/auth';
+import UserDropDown from './UserDropDown';
 
 const Header = ({ onMenuClick }) => {
+
+  const logout = async () => {
+    const auth = getAuth();
+    try {
+      await signOut(auth);
+      console.log("Usuário deslogado com sucesso.");
+
+      navigate('/auth');
+    } catch (error) {
+      console.error("Erro ao deslogar:", error);
+    }
+  };
 
   const { user, loading } = useAuth();
 
@@ -37,12 +51,17 @@ const Header = ({ onMenuClick }) => {
           </div>
 
           {user ? (
+            <UserDropDown
+            user={user}
+            onProfile={() => navigate('/profile')}
+            onLogout={logout}
+          >
             <img
             src={user.photoURL || "https://via.placeholder.com/40"}
             alt="Perfil"
             className="w-10 h-10 rounded-full cursor-pointer"
-            onClick={() => navigate("/profile")}
           />
+          </UserDropDown>
           ) : (
             <button className={`${styles.join} cursor-pointer`} onClick={irParaLogin}>Entrar</button> 
 
@@ -54,6 +73,7 @@ const Header = ({ onMenuClick }) => {
             </button>
           </div>
         </div>
+          
       </div>     
     </nav>
   )
