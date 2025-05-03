@@ -11,7 +11,7 @@ const Header = ({ onMenuClick }) => {
   const navigate = useNavigate();
 
   const irParaLogin = () => {
-    navigate('/login');
+    navigate('/auth');
   };
 
   if (loading) {
