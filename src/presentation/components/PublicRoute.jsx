@@ -1,0 +1,12 @@
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
+
+const PublicRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+
+  if (loading) return <p>Carregando...</p>;
+
+  return user ? <Navigate to="/profile" /> : children;
+};
+
+export default PublicRoute;
