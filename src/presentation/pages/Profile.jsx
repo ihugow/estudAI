@@ -11,7 +11,7 @@ const Profile = () => {
   }
 
   if (!user) {
-    navigate("/login");
+    navigate("/auth");
     return null;
   }
 
@@ -20,7 +20,7 @@ const Profile = () => {
       <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm">
         <img
           src={user.photoURL || "https://via.placeholder.com/150"}
-          alt="Foto de perfil"
+          alt="Sua foto de perfil"
           className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
         />
         <h2 className="text-center text-2xl font-semibold">{user.displayName || "Nome não informado"}</h2>
