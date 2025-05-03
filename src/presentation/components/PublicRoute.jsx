@@ -6,7 +6,7 @@ const PublicRoute = ({ children }) => {
 
   if (loading) return <p>Carregando...</p>;
 
-  return user ? <Navigate to="/profile" /> : children;
+  return user ? <Navigate to="/" /> : children;
 };
 
 export default PublicRoute;
