@@ -1,0 +1,149 @@
+import React, { useState } from "react";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase";
+
+const RegisterForm = ({ onShowLogin }) => {
+  const [username, setUserName] = useState("");
+  const [name, setName] = useState("");
+  const [secondname, setSecondname] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [erro, setErro] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleAuth = async (e) => {
+    e.preventDefault();
+    setErro("");
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
+
+      await updateProfile(userCredential.user, {
+        displayName: `${name} ${secondname}`,
+        photoURL: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}+${encodeURIComponent(secondname)}&background=random`
+      });
+
+      navigate("/profile");
+
+    } catch (error) {
+      console.error("Erro de autenticação:", error);
+      setErro(formatFirebaseError(error.code));
+    }
+  };
+
+  const formatFirebaseError = (code) => {
+    switch (code) {
+      case "auth/email-already-in-use":
+        return "Esse e-mail já está em uso.";
+      case "auth/invalid-email":
+        return "E-mail inválido.";
+      case "auth/weak-password":
+        return "A senha deve ter pelo menos 6 caracteres.";
+      default:
+        return "Erro desconhecido. Tente novamente.";
+    }
+  };
+
+  return (
+    <section id="Register_Section" className="">
+      <h1 className="mt-9 text-white text-base text-center">
+        Cadastrar-se e começar a estudar
+      </h1>
+
+      {erro && (
+        <div className="bg-red-100 text-red-600 p-2 rounded mb-4 text-sm">
+          {erro}
+        </div>
+      )}
+
+      <form onSubmit={handleAuth}>
+        <div className="mt-4">
+          <label className="block text-white text-sm mb-2" htmlFor="username">
+            Usuário
+          </label>
+          <input
+            id="username"
+            type="text"
+            placeholder="@username"
+            className="w-full text-white py-2.5 px-4 bg-[#10151f] border-1 border-[#292d41] rounded-md hover:border-secondary-blue duration-300 focus:outline-none focus:ring-1 focus:ring-secondary-blue"
+            value={username}
+            onChange={(e) => setUserName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="flex flex-row gap-4">
+          <div className="mt-4">
+            <label className="block text-white text-sm mb-2" htmlFor="name">
+              Nome
+            </label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Nome"
+              className="w-full text-white py-2.5 px-4 bg-[#10151f] border-1 border-[#292d41] rounded-md hover:border-secondary-blue duration-300 focus:outline-none focus:ring-1 focus:ring-secondary-blue"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mt-4">
+            <label className="block text-white text-sm mb-2" htmlFor="secondname">
+              Sobrenome
+            </label>
+            <input
+              id="secondname"
+              type="text"
+              placeholder="Sobrenome"
+              className="w-full text-white py-2.5 px-4 bg-[#10151f] border-1 border-[#292d41] rounded-md hover:border-secondary-blue duration-300 focus:outline-none focus:ring-1 focus:ring-secondary-blue"
+              value={secondname}
+              onChange={(e) => setSecondname(e.target.value)}
+              required
+            />
+          </div>
+        </div>
+        <div className="mt-4">
+          <label className="block text-white text-sm mb-2" htmlFor="email">
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="usuario@email.com"
+            className="w-full text-white py-2.5 px-4 bg-[#10151f] border-1 border-[#292d41] rounded-md hover:border-secondary-blue duration-300 focus:outline-none focus:ring-1 focus:ring-secondary-blue"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="mt-4">
+          <label className="block text-white text-sm mb-2" htmlFor="password">
+              Senha
+            </label>
+          <input
+            id="password"
+            type="password"
+            placeholder="******"
+            className="w-full text-white py-2.5 px-4 bg-[#10151f] border-1 border-[#292d41] rounded-md hover:border-secondary-blue duration-300 focus:outline-none focus:ring-1 focus:ring-secondary-blue"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="mt-8 mb-5 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors cursor-pointer"
+        >
+          Cadastrar
+        </button>
+      </form>
+
+      <button onClick={onShowLogin}>Já tem conta? Faça login</button>
+    </section>
+  );
+};
+
+export default RegisterForm;
