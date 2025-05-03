@@ -6,8 +6,10 @@ import LayoutSimples from "./presentation/layouts/LayoutSimples";
 import ScrollToTop from "./presentation/components/ScrollToTop";
 
 import HomePage from "./presentation/pages/home/Home";
-import LoginPage from "./presentation/pages/login/Login";
 import ProfilePage from "./presentation/pages/Profile";
+import AuthPage from "./presentation/pages/Auth";
+import ProtectedRoute from "./presentation/components/ProtectedRoute";
+import PublicRoute from "./presentation/components/PublicRoute";
 
 function App() {
   return (
@@ -16,11 +18,25 @@ function App() {
       <Routes>
         <Route element={<LayoutPrincipal />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
         </Route>
 
         <Route element={<LayoutSimples />}>
-          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/auth"
+            element={
+              <PublicRoute>
+                <AuthPage />
+              </PublicRoute>
+            }
+          />
         </Route>
       </Routes>
     </>
