@@ -13,10 +13,18 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser || null);
-      setLoading(false);
-    });
 
+      if (currentUser) {
+        currentUser.reload().then(() => {
+          setUser(auth.currentUser);
+          setLoading(false);
+        });
+      }
+      else {
+        setUser(null);
+        setLoading(false);
+      }
+    });
     return () => unsubscribe();
   }, []);
 

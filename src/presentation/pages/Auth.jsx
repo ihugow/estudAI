@@ -4,6 +4,7 @@ import RegisterForm from "../components/RegisterForm";
 import { EstudAI } from "../components/EstudAI";
 
 import { IoReturnDownBackSharp } from "react-icons/io5";
+import EmailVerification from "../components/EmailVerification";
 
 const Auth = () => {
   const [searchParams] = useSearchParams();
@@ -21,20 +22,18 @@ const Auth = () => {
 
   const handleBack = () => {
     if (mode === "register") {
-      window.history.back(); 
+      navigate("/auth?mode=login");
     } else {
-      navigate("/"); 
+      navigate("/");
     }
   };
-
-  // const [isRegistering, setIsRegistering] = useState(false);
 
   return (
     <div>
       <div
         id="Body"
         className="p-3 flex w-screen min-h-screen bg-[url('./assets/images/global/background.png')] bg-cover bg-fixed
-                   sm:p-7 xl:p-15"
+                   sm:p-7 xxl:p-15"
       >
         <div
           id="Container"
@@ -53,7 +52,9 @@ const Auth = () => {
               <IoReturnDownBackSharp className="size-5" />
             </button>
             <EstudAI className="mx-auto mt-4" />
-            {mode === "register" ? (
+            {mode === "verification" ? (
+              <EmailVerification />
+            ) : mode === "register" ? (
               <RegisterForm onShowLogin={handleShowLogin} />
             ) : (
               <LoginForm onShowRegister={handleShowRegister} />

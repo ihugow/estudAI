@@ -6,7 +6,11 @@ const PublicRoute = ({ children }) => {
 
   if (loading) return <p>Carregando...</p>;
 
-  return user ? <Navigate to="/" /> : children;
+  if (user && user.emailVerified) {
+    return <Navigate to="/" />;
+  }
+
+  return children;
 };
 
 export default PublicRoute;

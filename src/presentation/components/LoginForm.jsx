@@ -1,25 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-// import { useAuth } from "../../contexts/AuthContext";
 
 import { ReactComponent as GoogleIcon } from "../../assets/images/global/icons/socials/google.svg";
 import { ReactComponent as MicrosoftIcon } from "../../assets/images/global/icons/socials/microsoft.svg";
 
 const LoginForm = ({ onShowRegister }) => {
   const navigate = useNavigate();
-  // const { user } = useAuth();
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
-  // useEffect(() => {
-  //   if (user) {
-  //     navigate("/");
-  //   }
-  // }, [user, navigate]);
 
   const loginGoogle = async () => {
     const provider = new GoogleAuthProvider();
