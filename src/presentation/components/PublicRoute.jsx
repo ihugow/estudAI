@@ -1,6 +1,8 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
+import LoadingAnimation from "./LoadingAnimation";
+
 const PublicRoute = ({ children }) => {
   const { user, loading } = useAuth();
 
@@ -11,7 +13,6 @@ const PublicRoute = ({ children }) => {
   if (user && user.emailVerified) {
     return <Navigate to="/" />;
   }
-
   return children;
 };
 
