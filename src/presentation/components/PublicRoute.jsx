@@ -4,7 +4,9 @@ import { useAuth } from "../../contexts/AuthContext";
 const PublicRoute = ({ children }) => {
   const { user, loading } = useAuth();
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) {
+    return <LoadingAnimation fullScreen/>;
+  }
 
   if (user && user.emailVerified) {
     return <Navigate to="/" />;

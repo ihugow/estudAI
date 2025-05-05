@@ -1,12 +1,15 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import EmailVerification from "./EmailVerification";
+import LoadingAnimation from "./LoadingAnimation";
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
 
-  if (loading) return <p>Carregando...</p>;
-
+  if (loading) {
+    return <LoadingAnimation fullScreen/>;
+  }
+    
   if (!user) return <Navigate to="/auth" />;
 
   if (!user.emailVerified) {

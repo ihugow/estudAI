@@ -3,14 +3,13 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 
-// IMPORTANTE: importe o BrowserRouter e AuthProvider
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase.jsx";
 
-import EstudAILogo from "./assets/images/global/logo.png";
+import LoadingAnimation from "./presentation/components/LoadingAnimation.jsx";
 
 function AuthLoader() {
   const [loading, setLoading] = useState(true);
@@ -26,15 +25,7 @@ function AuthLoader() {
   }, []);
 
   if (!initialized || loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#191919]">
-        <img
-          src={EstudAILogo}
-          alt="Logo do App"
-          className="w-24 h-24 animate-pulse"
-        />
-      </div>
-    );
+    return <LoadingAnimation fullScreen />;
   }
 
   return <App />;
