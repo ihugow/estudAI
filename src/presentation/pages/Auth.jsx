@@ -32,7 +32,7 @@ const Auth = () => {
     <div>
       <div
         id="Body"
-        className="p-3 flex w-screen min-h-screen bg-[url('./assets/images/global/background.png')] bg-cover bg-fixed
+        className="p-3 flex w-screen min-h-screen bg-[url('./assets/images/global/background.png')] bg-cover
                    sm:p-7 xxl:p-15"
       >
         <div

@@ -22,7 +22,7 @@ const materias = [
 
 const HomePage = () => {
   return (
-    <div className="py-28 bg-[url('./assets/images/global/background.png')] bg-cover bg-fixed">
+    <div className="py-28 bg-[url('./assets/images/global/background.png')] bg-cover">
       <div className={`${styles.homeContainer} container mx-auto px-4`}>
         <section className={styles.prologo}>
           <div className={styles.prologoTxt}>
