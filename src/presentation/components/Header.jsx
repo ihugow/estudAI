@@ -6,8 +6,8 @@ import { getAuth, signOut } from "firebase/auth";
 import UserDropDown from "./UserDropDown";
 import LoadingAnimation from "./LoadingAnimation";
 import { LuSettings2 } from "react-icons/lu";
-import { IoSearch } from "react-icons/io5";
-import { IoNotifications } from "react-icons/io5";
+import { IoSearch, IoNotifications } from "react-icons/io5";
+import { FaCircle } from "react-icons/fa";
 
 const Header = ({ onMenuClick }) => {
   const logout = async () => {
@@ -77,7 +77,8 @@ const Header = ({ onMenuClick }) => {
             </button>
           )}
 
-          <button className="flex items-center justify-center p-1 text-white rounded-md bg-[#10151f] cursor-pointer border-[1.5px] border-[#292d41] duration-300 hover:bg-[#292d41]">
+          <button className="flex items-center justify-center p-1 text-white relative rounded-md bg-[#10151f] cursor-pointer border-[1.5px] border-[#292d41] duration-300 hover:bg-[#292d41]">
+            <FaCircle className="text-red-600 size-2.5 absolute top-0.5 right-0.5"/>
             <IoNotifications className="size-4.5" />
           </button>
         </div>

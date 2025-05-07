@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Home.module.css";
 import "../../../App.css";
-import studentImage from "../../../assets/images/global/mindStudent.png";
+import studentImage from "../../../assets/images/global/student.png";
 import mindGallery from "../../../assets/images/pages/home/mindGallery.png";
 
 import mathIcon from "../../../assets/images/global/icons/materias/math.png";
