@@ -35,11 +35,11 @@ const Header = ({ onMenuClick }) => {
   return (
     <nav
       id="body"
-      className="fixed top-0 w-full z-50 bg-[#030712] backdrop-blur-xl border-b border-[#292d41]"
+      className="fixed top-0 w-full z-49 bg-[#030712] backdrop-blur-xl border-b border-[#292d41]"
     >
       <div
         id="container"
-        className="flex items-center justify-between mx-auto px-4 py-2.5"
+        className="flex items-center justify-between mx-auto px-4 py-3"
       >
         <div id="settings&estudai" className="flex items-center gap-2.5">
           <button
@@ -58,18 +58,21 @@ const Header = ({ onMenuClick }) => {
 
           {user ? (
             <DropDown
-              className="mr-4"
+              className=""
+              sideOffset={12}
               openOnHover
+              
               items={[
                 {
-                  label: "Meu Perfil",
-                  icon: <FaUser />,
-                  onSelect: () => navigate("/profile"),
+                  type: 'profile',              
                 },
                 { type: "separator" },
                 {
+                  label: "Minha Conta",
+                  onSelect: navigate('/profile')
+                },
+                {
                   label: "Sair",
-                  icon: <RiLogoutBoxFill />,
                   onSelect: logout,
                 },
               ]}
@@ -92,9 +95,9 @@ const Header = ({ onMenuClick }) => {
           )}
 
           <DropDown
-            className="mr-4"
+            className=""
             openOnHover
-            sideOffset={14}
+            sideOffset={18}
             items={[
               {
                 label: "Seja bem-vindo(a)",
