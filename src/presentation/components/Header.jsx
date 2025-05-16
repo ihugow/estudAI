@@ -1,15 +1,18 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { EstudAI } from "./EstudAI";
 import { useAuth } from "../../contexts/AuthContext";
 import { getAuth, signOut } from "firebase/auth";
-import UserDropDown from "./UserDropDown";
+import DropDown from "./DropDown";
 import LoadingAnimation from "./LoadingAnimation";
 import { LuSettings2 } from "react-icons/lu";
 import { IoSearch, IoNotifications } from "react-icons/io5";
-import { FaCircle } from "react-icons/fa";
+import { FaCircle, FaUser } from "react-icons/fa";
+import { RiLogoutBoxFill } from "react-icons/ri";
 
 const Header = ({ onMenuClick }) => {
+  const navigate = useNavigate();
+  const { user, loading } = useAuth();
+
   const logout = async () => {
     const auth = getAuth();
     try {
@@ -20,9 +23,6 @@ const Header = ({ onMenuClick }) => {
       console.error("Erro ao deslogar:", error);
     }
   };
-
-  const { user, loading } = useAuth();
-  const navigate = useNavigate();
 
   const irParaLogin = () => {
     navigate("/auth");
@@ -57,17 +57,31 @@ const Header = ({ onMenuClick }) => {
           </button>
 
           {user ? (
-            <UserDropDown
-              user={user}
-              onProfile={() => navigate("/profile")}
-              onLogout={logout}
+            <DropDown
+              className="mr-4"
+              openOnHover
+              items={[
+                {
+                  label: "Meu Perfil",
+                  icon: <FaUser />,
+                  onSelect: () => navigate("/profile"),
+                },
+                { type: "separator" },
+                {
+                  label: "Sair",
+                  icon: <RiLogoutBoxFill />,
+                  onSelect: logout,
+                },
+              ]}
             >
-              <img
-                src={user.photoURL || "https://via.placeholder.com/40"}
-                alt="Perfil"
-                className="w-10 h-10 rounded-full cursor-pointer"
-              />
-            </UserDropDown>
+              <button>
+                <img
+                  src={user.photoURL || "https://via.placeholder.com/40"}
+                  alt="Perfil"
+                  className="w-10 rounded-full cursor-pointer"
+                />
+              </button>
+            </DropDown>
           ) : (
             <button
               className="text-white font-medium text-xs bg-gradient-to-br from-[#00E9EA] to-[#2e55e9] p-2 rounded-lg shadow-md transition-transform hover:scale-105 cursor-pointer"
@@ -77,10 +91,34 @@ const Header = ({ onMenuClick }) => {
             </button>
           )}
 
-          <button className="flex items-center justify-center p-1 text-white relative rounded-md bg-[#10151f] cursor-pointer border-[1.5px] border-[#292d41] duration-300 hover:bg-[#292d41]">
-            <FaCircle className="text-red-600 size-2.5 absolute top-0.5 right-0.5"/>
-            <IoNotifications className="size-4.5" />
-          </button>
+          <DropDown
+            className="mr-4"
+            openOnHover
+            sideOffset={14}
+            items={[
+              {
+                label: "Seja bem-vindo(a)",
+                icon: <FaCircle className="text-green-500 text-xs" />,
+                onSelect: () => {},
+              },
+              {
+                label: "Alerta de sistema",
+                icon: <FaCircle className="text-yellow-500 text-xs" />,
+                onSelect: () => {},
+              },
+              { type: "separator" },
+              {
+                label: "Ver todas",
+                icon: <IoNotifications />,
+                onSelect: () => navigate("/notificacoes"),
+              },
+            ]}
+          >
+            <div className="flex items-center justify-center p-1 text-white relative rounded-md bg-[#10151f] cursor-pointer border-[1.5px] border-[#292d41] duration-300 hover:bg-[#292d41]">
+              <FaCircle className="text-red-600 size-2.5 absolute top-0.5 right-0.5" />
+              <IoNotifications className="size-4.5" />
+            </div>
+          </DropDown>
         </div>
       </div>
     </nav>
