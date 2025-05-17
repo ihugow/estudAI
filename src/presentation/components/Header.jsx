@@ -7,7 +7,6 @@ import LoadingAnimation from "./LoadingAnimation";
 import { LuSettings2 } from "react-icons/lu";
 import { IoSearch, IoNotifications } from "react-icons/io5";
 import { FaCircle, FaUser } from "react-icons/fa";
-import { RiLogoutBoxFill } from "react-icons/ri";
 
 const Header = ({ onMenuClick }) => {
   const navigate = useNavigate();
@@ -51,6 +50,20 @@ const Header = ({ onMenuClick }) => {
           <EstudAI />
         </div>
 
+        <div id="ways" className="">
+          <ul className="hidden gap-10 text-white font-semibold text-lg overflow-hidden md:flex">
+            <li>
+              Explorar
+            </li>
+            <li>
+              Comunidade
+            </li>
+            <li>
+              Sobre nós
+            </li>
+          </ul>
+        </div>
+
         <div id="right_buttons" className="flex items-center gap-2">
           <button className="flex items-center justify-center p-1 text-white rounded-md bg-[#10151f] cursor-pointer border-[1.5px] border-[#292d41] duration-300 hover:bg-[#292d41]">
             <IoSearch className="size-4.5" />
@@ -69,7 +82,7 @@ const Header = ({ onMenuClick }) => {
                 { type: "separator" },
                 {
                   label: "Minha Conta",
-                  onSelect: navigate('/profile')
+                  onSelect: () => navigate("/profile"),
                 },
                 {
                   label: "Sair",
@@ -87,7 +100,7 @@ const Header = ({ onMenuClick }) => {
             </DropDown>
           ) : (
             <button
-              className="text-white font-medium text-xs bg-gradient-to-br from-[#00E9EA] to-[#2e55e9] p-2 rounded-lg shadow-md transition-transform hover:scale-105 cursor-pointer"
+              className="text-white font-medium text-xs bg-gradient-to-br from-[#00E9EA] to-[#2e55e9] p-3 rounded-lg shadow-md transition-transform hover:scale-105 cursor-pointer"
               onClick={irParaLogin}
             >
               Entrar

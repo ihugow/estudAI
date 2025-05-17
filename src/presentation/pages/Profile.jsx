@@ -7,7 +7,7 @@ import { FaBookmark } from "react-icons/fa";
 import { RxEyeNone } from "react-icons/rx";
 
 const Profile = () => {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   if (user === undefined) {
@@ -54,13 +54,6 @@ const Profile = () => {
             <p className="text-gray-400">seguindo</p>
           </div>
         </div>
-
-        <button
-          onClick={() => logout()}
-          className="mt-7 bg-red-500 text-white py-2 px-4 rounded cursor-pointer hover:bg-red-600 transition-colors"
-        >
-          Sair
-        </button>
 
         <div id="CATEGORY" className="flex justify-between mt-7">
           <div className="flex-1 border-t-2 border-white py-2">

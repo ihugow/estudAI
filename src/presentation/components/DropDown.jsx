@@ -72,7 +72,7 @@ const DropDown = ({
                     <div className="mt-3 font-semibold text-lg text-white">
                       {user.displayName}
                     </div>
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-manatee">
                       {user.email}
                     </div>
                   </div>

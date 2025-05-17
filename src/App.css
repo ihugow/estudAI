@@ -7,7 +7,7 @@
   --color-paragraph: #9ea0a7;
   --color-bg-login-primary: #06080d;
   --color-bg-login-secondary: #0d121c;
-
+  --color-manatee: #9ea0a7;
   --breakpoint-*: initial;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -63,6 +63,19 @@
       transform: translateY(-10px) translateX(15px) scale(0.85);
     }
   }
+
+  @keyframes floating {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(15px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }  
+
   .animate-fade-in {
     animation: fade-in 150ms ease-out forwards;
   }
@@ -74,6 +87,9 @@
   }
   .animate-popover-out {
     animation: fade-slide-up 150ms ease-in forwards;
+  }
+  .animate-floating {
+    animation: floating 3s ease-in-out infinite;
   }
 }
 
