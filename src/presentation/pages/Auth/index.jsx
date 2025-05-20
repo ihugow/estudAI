@@ -1,10 +1,10 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
-import LoginForm from "../components/LoginForm";
-import RegisterForm from "../components/RegisterForm";
-import { EstudAI } from "../components/EstudAI";
+import LoginForm from "../../components/LoginForm";
+import RegisterForm from "../../components/RegisterForm";
+import { EstudAI } from "../../components/EstudAI";
 
 import { IoReturnDownBackSharp } from "react-icons/io5";
-import EmailVerification from "../components/EmailVerification";
+import EmailVerification from "../../components/EmailVerification";
 
 const Auth = () => {
   const [searchParams] = useSearchParams();

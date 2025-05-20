@@ -5,12 +5,12 @@ import LayoutPrincipal from "./presentation/layouts/LayoutPrincipal";
 import LayoutSimples from "./presentation/layouts/LayoutSimples";
 import NoFooterLayout from "./presentation/layouts/NoFooterLayout";
 import ScrollToTop from "./presentation/components/ScrollToTop";
-
-import HomePage from "./presentation/pages/home/Home";
-import ProfilePage from "./presentation/pages/Profile";
-import AuthPage from "./presentation/pages/Auth";
 import ProtectedRoute from "./presentation/components/ProtectedRoute";
 import PublicRoute from "./presentation/components/PublicRoute";
+
+import HomePage from "./presentation/pages/Home";
+import ProfilePage from "./presentation/pages/Profile";
+import AuthPage from "./presentation/pages/Auth";
 
 function App() {
   return (

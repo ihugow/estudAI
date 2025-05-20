@@ -31,9 +31,9 @@ const HomePage = () => {
             </h1>
             <p className="text-manatee lg:text-xl w-[85%] mx-auto xl:mx-0">
               Plataforma colaborativa de estudos com o poder da comunidade e da
-              IA, alavanque seu potencial adquirindo ou compartilhando conhecimento.
+              IA.
             </p>
-            <div className="mt-3 grid grid-cols-2 justify-center gap-5 xl:justify-start xl:max-w-lg xxl:max-w-xl">
+            <div className="mt-3 grid grid-cols-2 justify-center gap-5 xl:justify-start xl:max-w-lg xxl:max-w-lg">
               <button className="bg-[#030712] py-3 px-8 rounded-xl font-semibold text-white cursor-pointer border border-gray-500">
                 Começar
               </button>
