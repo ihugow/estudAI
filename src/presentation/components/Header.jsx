@@ -71,7 +71,7 @@ const Header = ({ onMenuClick }) => {
 
           {user ? (
             <DropDown
-              className=""
+              className="mr-4"
               sideOffset={12}
               openOnHover
               
@@ -108,7 +108,7 @@ const Header = ({ onMenuClick }) => {
           )}
 
           <DropDown
-            className=""
+            className="mr-4"
             openOnHover
             sideOffset={18}
             items={[

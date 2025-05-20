@@ -42,7 +42,7 @@ const DropDown = ({
         <Popover.Portal>
           <Popover.Content
             forceMount
-            align="end"
+            align="center"
             sideOffset={sideOffset}
             className={`outline-none z-50 min-w-64 text-white rounded-md bg-[#030712] p-2.5 border border-[#292d41] shadow-lg/50 ${
               open ? "animate-popover-in" : "animate-popover-out"
