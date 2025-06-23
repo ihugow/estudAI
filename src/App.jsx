@@ -11,8 +11,11 @@ import PublicRoute from "./presentation/components/PublicRoute";
 import HomePage from "./presentation/pages/Home";
 import ProfilePage from "./presentation/pages/Profile";
 import AuthPage from "./presentation/pages/Auth";
+import CreatePostModal from "./presentation/components/CreatePostModal";
+import { ModalProvider, useModal } from "./contexts/ModalContext";
 
-function App() {
+function AppContent() {
+  const { isModalOpen, closeModal } = useModal();
   return (
     <>
       <ScrollToTop />
@@ -43,7 +46,16 @@ function App() {
           />
         </Route>
       </Routes>
+      <CreatePostModal isOpen={isModalOpen} onClose={closeModal} />
     </>
+  );
+}
+
+function App() {
+  return (
+    <ModalProvider>
+      <AppContent />
+    </ModalProvider>
   );
 }
 
