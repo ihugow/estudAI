@@ -2,12 +2,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-blue: #00d8ff;
-  --color-secondary-blue: #2e55e9;
+  --color-primary-blue: #3cd1ff;
+  --color-secondary-blue: #0024C3;
   --color-paragraph: #9ea0a7;
   --color-bg-login-primary: #06080d;
   --color-bg-login-secondary: #0d121c;
   --color-manatee: #9ea0a7;
+  --color-box: #10151F;
+  --color-cinza-ardosia: #2D3243;
   --breakpoint-*: initial;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -18,7 +20,7 @@
 
 @layer utilities {
   .main-gradient {
-    background-image: linear-gradient(to right bottom, #00e9ea, #2e55e9);
+    background-image: linear-gradient(to right bottom, #3cd1ff, #0024C3);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
