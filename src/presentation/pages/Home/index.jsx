@@ -1,64 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../../../firebase";
-import { collection, query, getDocs, orderBy, limit } from 'firebase/firestore';
-import "../../../App.css";
-import { FaSearch } from "react-icons/fa";
+import { collection, query, getDocs, orderBy, limit } from "firebase/firestore";
 import ScrollableTagBar from "../../components/ScrollableTagBar";
-import PostCard from "../../components/PostCard";
-import PostExpanded from "../../components/PostExpanded";
+import PostList from "../../components/PostList";
+import "../../../App.css";
 
+import { FaSearch } from "react-icons/fa";
 
 const HomePage = () => {
   const [allPosts, setAllPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-  const [selectedPost, setSelectedPost] = useState(null);
 
   useEffect(() => {
     const fetchAllPosts = async () => {
       setLoading(true);
       try {
-        // --- A GRANDE DIFERENÇA ESTÁ AQUI! ---
-        // 1. Não temos o filtro 'where', pois queremos todos os posts.
-        // 2. Apenas ordenamos por data para mostrar os mais recentes primeiro.
-        // 3. Adicionei um 'limit(20)' para buscar apenas os 20 posts mais recentes.
-        //    Isso evita carregar o banco de dados desnecessariamente. Veremos mais sobre isso abaixo.
-        const postsCollectionRef = collection(db, 'posts');
+        // Consulta diferente: busca todos os posts, sem 'where'
         const q = query(
-          postsCollectionRef, 
+          collection(db, 'posts'), 
           orderBy("createdAt", "desc"),
-          limit(20) 
+          limit(20)
         );
-
         const querySnapshot = await getDocs(q);
         const posts = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        
         setAllPosts(posts);
       } catch (error) {
-        console.error("Erro ao buscar os posts: ", error);
-        // Aqui você poderia definir um estado de erro para mostrar uma mensagem na tela
+        console.error("Erro ao buscar todos os posts: ", error);
       } finally {
         setLoading(false);
       }
     };
-
     fetchAllPosts();
-  }, []); // O array vazio [] garante que isso só rode uma vez, quando o componente montar.
-
-  // Funções para controlar o modal (idênticas às da ProfilePage)
-  const handleCardClick = (post) => {
-    setSelectedPost(post);
-    setIsDetailModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsDetailModalOpen(false);
-    setSelectedPost(null);
-  };
-
-  if (loading) {
-    return <p className="text-center text-gray-500 mt-10">Carregando feed...</p>;
-  }
+  }, []);
 
   return (
     <div className="">
@@ -85,26 +58,10 @@ const HomePage = () => {
       {/* start end */}
       <section id="TRENDS" className="bg-bgpage px-4">
         <ScrollableTagBar />
-        <p className="text-white font-medium my-4">Veja o que estão compartilhando</p>
-        {allPosts.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {allPosts.map(post => (
-            <PostCard 
-              key={post.id} 
-              post={post} 
-              onCardClick={handleCardClick} 
-            />
-          ))}
-        </div>
-      ) : (
-        <p className="text-center text-gray-500 mt-10">Ainda não há posts no feed. Seja o primeiro a criar!</p>
-      )}
-
-      <PostExpanded
-        isOpen={isDetailModalOpen}
-        onClose={handleCloseModal}
-        post={selectedPost}
-      />
+        <p className="text-white font-medium my-4">
+          Veja o que estão compartilhando
+        </p>
+        <PostList posts={allPosts} loading={loading} />
       </section>
     </div>
   );

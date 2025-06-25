@@ -1,13 +1,50 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
+import React, { useState, useEffect } from "react";
+import { db } from "../../../firebase";
+import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
+import PostList from "../../components/PostList";
 
+//Ícones
 import { TfiLayoutGrid3Alt } from "react-icons/tfi";
 import { FaBookmark } from "react-icons/fa";
-import { RxEyeNone } from "react-icons/rx";
+import { IoEyeOffOutline } from "react-icons/io5";
 
 const Profile = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [userPosts, setUserPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      const fetchUserPosts = async () => {
+        setLoading(true);
+        try {
+          const q = query(
+            collection(db, "posts"),
+            where("authorId", "==", user.uid),
+            orderBy("createdAt", "desc")
+          );
+
+          const querySnapshot = await getDocs(q);
+          const posts = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+
+          setUserPosts(posts);
+        } catch (error) {
+          console.error("Erro ao buscar os posts do usuário: ", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchUserPosts();
+    } else {
+      setLoading(false);
+    }
+  }, [user]);
 
   if (user === undefined) {
     return <p>Carregando perfil...</p>;
@@ -41,7 +78,7 @@ const Profile = () => {
 
         <div id="INFO" className="flex justify-between mt-7">
           <div className="flex flex-col items-center">
-            <span className="font-bold text-white">0</span>
+            <span className="font-bold text-white">{userPosts.length}</span>
             <p className="text-gray-400">publicaçoes</p>
           </div>
           <div className="flex flex-col items-center">
@@ -62,11 +99,7 @@ const Profile = () => {
             <FaBookmark className="text-white size-6 mx-auto" />
           </div>
         </div>
-
-        <div className="mt-16 flex flex-col justify-center items-center gap-2">
-          <RxEyeNone className="text-gray-400 size-10" />
-          <p className="text-gray-400">Você ainda não possui publicações</p>
-        </div>
+        <PostList posts={userPosts} loading={loading} />
       </div>
     </div>
   );
