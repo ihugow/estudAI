@@ -116,7 +116,10 @@ function CreatePostModal({ isOpen, onClose }) {
       return;
     }
 
-    const storageRef = ref(storage, `images/${Date.now()}_${imageFile.name}`);
+    const storageRef = ref(
+      storage,
+      `images/${user.uid}/${Date.now()}_${imageFile.name}`
+    );
     const uploadTask = uploadBytesResumable(storageRef, imageFile);
 
     uploadTask.on(
@@ -141,6 +144,7 @@ function CreatePostModal({ isOpen, onClose }) {
             authorId: user.uid,
             authorName: user.displayName || "Anônimo",
             createdAt: serverTimestamp(),
+            authorPhotoURL: user.photoURL || null,
           };
 
           try {
@@ -167,11 +171,11 @@ function CreatePostModal({ isOpen, onClose }) {
 
   return ReactDOM.createPortal(
     <div
-      className="fixed inset-0 bg-black/50 z-50 flex justify-center items-center p-4"
+      className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex justify-center items-center p-4"
       onClick={onClose}
     >
       <div
-        className="bg-linear-to-r from-bg-login-primary to-bg-login-secondary rounded-lg shadow-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-cinza-ardosia"
+        className="bg-linear-to-r from-bg-login-primary to-bg-login-secondary rounded-lg shadow-xl p-6 w-full max-w-3xl max-h-[90vh] overflow-y-auto border border-cinza-ardosia"
         onClick={(e) => e.stopPropagation()}
       >
         <button
