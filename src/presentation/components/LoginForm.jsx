@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth, db } from "../../firebase";
+import { doc, getDoc, setDoc, collection, query, where, getDocs } from "firebase/firestore";
 
 import { ReactComponent as GoogleIcon } from "../../assets/images/global/icons/socials/google.svg";
 import { ReactComponent as MicrosoftIcon } from "../../assets/images/global/icons/socials/microsoft.svg";
@@ -12,11 +17,56 @@ const LoginForm = ({ onShowRegister }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
+  const generateUniqueUsername = async (displayName) => {
+    // Remove espaços, converte para minúsculas. Ex: "Hugo Oliveira" -> "hugooliveira"
+    let baseUsername = displayName.replace(/\s+/g, "").toLowerCase();
+    let username = baseUsername;
+    let counter = 1;
+
+    while (true) {
+      // Cria uma consulta para procurar por documentos com este username
+      const usersRef = collection(db, "users");
+      const q = query(usersRef, where("username", "==", username));
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.empty) {
+        return username;
+      }
+      // Se já existe, anexa um número e tenta novamente no próximo loop
+      username = `${baseUsername}${counter}`;
+      counter++;
+    }
+  };
+
   const loginGoogle = async () => {
     const provider = new GoogleAuthProvider();
 
     try {
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      const userDocRef = doc(db, "users", user.uid);
+      const userDocSnap = await getDoc(userDocRef);
+
+      if (!userDocSnap.exists()) {
+        console.log("Novo usuário com Google, gerando username único...");
+        
+        // **A MUDANÇA ESTÁ AQUI**
+        // Chama a função para gerar um username único
+        const uniqueUsername = await generateUniqueUsername(user.displayName);
+        
+        console.log(`Username gerado: ${uniqueUsername}`);
+
+        await setDoc(userDocRef, {
+          uid: user.uid,
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          username: uniqueUsername, // Salva o username gerado
+          createdAt: new Date(),
+        });
+      }
+
+      navigate("/")
     } catch (error) {
       console.error("Erro ao logar com Google:", error);
     }
@@ -35,10 +85,7 @@ const LoginForm = ({ onShowRegister }) => {
     }
   };
   return (
-    <section
-      id="Login_Section"
-      className=""
-    >
+    <section id="Login_Section" className="">
       <h1 className="mt-9 text-white text-base text-center">
         Entre ou cadastre-se com
       </h1>
