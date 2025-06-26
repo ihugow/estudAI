@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
-
-import { auth } from "../../firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../../firebase";
 import EmailVerification from "./EmailVerification";
 
 const RegisterForm = () => {
@@ -20,10 +20,23 @@ const RegisterForm = () => {
 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
+      const user = userCredential.user;
 
-      await updateProfile(userCredential.user, {
-        displayName: `${name} ${secondname}`,
-        photoURL: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}+${encodeURIComponent(secondname)}&background=random`
+      const displayName = `${name} ${secondname}`;
+      const photoURL = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}+${encodeURIComponent(secondname)}&background=random`;
+
+      await updateProfile(user, {
+        displayName: displayName,
+        photoURL: photoURL
+      });
+
+      await setDoc(doc(db, "users", user.uid), {
+        uid: user.uid,
+        username: username.toLowerCase(),
+        displayName: displayName,
+        email: email,
+        photoURL: photoURL,
+        createdAt: new Date()
       });
 
       await sendEmailVerification(userCredential.user);
