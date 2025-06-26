@@ -37,16 +37,13 @@ const Header = () => {
   return (
     <nav
       id="body"
-      className="fixed top-0 w-full z-49 bg-[#030712] backdrop-blur-xl border-b border-[#292d41]"
+      className="fixed h-15 top-0 w-full z-49 bg-[#030712] backdrop-blur-xl border-b border-[#292d41]"
     >
       <div
         id="container"
         className="flex items-center justify-between mx-auto px-4 py-2"
       >
-        <div id="settings&estudai" className="flex items-center gap-2.5">
-          <EstudAI />
-        </div>
-
+        <EstudAI />
         <div id="ways" className="">
           <ul className="hidden gap-10 text-white font-semibold text-lg overflow-hidden md:flex">
             <li>Explorar</li>

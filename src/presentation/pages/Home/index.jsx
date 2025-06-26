@@ -61,7 +61,7 @@ const HomePage = () => {
         <p className="text-white font-medium my-4">
           Veja o que estão compartilhando
         </p>
-        <PostList posts={allPosts} loading={loading} />
+        <PostList posts={allPosts} loading={loading} variant="feed" />
       </section>
     </div>
   );
