@@ -37,13 +37,13 @@ const HomePage = () => {
     <div className="">
       <section
         id="START"
-        className="pt-72 pb-64 px-4 bg-[url('./assets/images/pages/home/bgstarthome.png')] bg-center bg-cover"
+        className="pt-50 md:pt-72 pb-25 md:pb-64 px-4 lg:px-8 bg-[url('./assets/images/pages/home/bgstarthome.png')] bg-center bg-cover"
       >
-        <h1 className="text-5xl font-semibold text-white text-center">
-          Estude com quem vive <br /> a mesma jornada que você
+        <h1 className="text-4xl max-w-2xl mx-auto md:text-5xl font-semibold text-white text-center">
+          Estude com quem vive a mesma jornada que você
         </h1>
-        <p className="text-manatee text-2xl text-center mt-4">
-          Plataforma colaborativa de estudos com o poder <br /> da comunidade e
+        <p className="text-manatee text-lg md:text-2xl max-w-lg md:max-w-xl mx-auto text-center mt-4">
+          Plataforma colaborativa de estudos com o poder da comunidade e
           da IA
         </p>
         <div className="flex gap-4 mt-12 max-w-xl mx-auto">
@@ -56,7 +56,7 @@ const HomePage = () => {
         </div>
       </section>
       {/* start end */}
-      <section id="TRENDS" className="bg-bgpage px-4">
+      <section id="TRENDS" className="bg-bgpage px-4 lg:px-8">
         <ScrollableTagBar />
         <p className="text-white font-medium my-4">
           Veja o que estão compartilhando
